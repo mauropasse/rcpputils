@@ -14,25 +14,39 @@
 
 #include "rcpputils/event_queue.hpp"
 #include <iostream>
+#include <queue>
 
 namespace rcpputils
 {
 
-static Event event_;
+static std::queue<Event> event_queue;
 
 Event
 rcpputils_get_next_event(void)
 {
-    std::cout << "Get: Address of entity: " << event_.entity << std::endl;
-    return event_;
+
+    auto m = event_queue.front();
+    event_queue.pop();
+
+    std::cout << "Pop from queue: Address of event entity: "
+              << m.entity << std::endl;
+
+    return m;
 }
 
 void
 rcpputils_set_next_event(Event event)
 {
-    event_ = event;
+    event_queue.push(event);
 
-    std::cout << "Set: Address of entity: " << event_.entity << std::endl;
+    std::cout << "Push to queue: Address of event entity: "
+              << event.entity << std::endl;
+}
+
+bool
+queue_is_empty()
+{
+    return event_queue.empty();
 }
 
 }  // namespace rcpputils

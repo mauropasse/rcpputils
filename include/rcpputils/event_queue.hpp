@@ -38,6 +38,9 @@ rcpputils_get_next_event();
 void
 rcpputils_set_next_event(Event event);
 
+bool
+queue_is_empty();
+
 
 } // namespace rcpputils
 
