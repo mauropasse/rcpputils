@@ -24,23 +24,15 @@ static std::queue<Event> event_queue;
 Event
 rcpputils_get_next_event(void)
 {
-
-    auto m = event_queue.front();
+    auto event = event_queue.front();
     event_queue.pop();
-
-    std::cout << "Pop from queue: Address of event entity: "
-              << m.entity << std::endl;
-
-    return m;
+    return event;
 }
 
 void
 rcpputils_set_next_event(Event event)
 {
     event_queue.push(event);
-
-    std::cout << "Push to queue: Address of event entity: "
-              << event.entity << std::endl;
 }
 
 bool
