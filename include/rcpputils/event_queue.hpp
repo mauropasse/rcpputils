@@ -20,7 +20,8 @@ namespace rcpputils
 
 enum EventType {
     SUBSCRIPTION_EVENT,
-    SERVICE_EVENT
+    SERVICE_EVENT,
+    CLIENT_EVENT
 };
 
 typedef enum EventType EventType;
